@@ -1,0 +1,11 @@
+backend_homepage:
+    pattern:  /
+    defaults: { _controller: BackendBundle:Default:index }
+    requirements:
+        _method:  GET
+backend_return_intents:
+    pattern:  /intents
+    defaults: {_controller: BackendBundle:Default:changeHomePage  }
+backend_homepage:
+    pattern:  /infoDevice
+    defaults: { _controller: BackendBundle:Default:insert }
