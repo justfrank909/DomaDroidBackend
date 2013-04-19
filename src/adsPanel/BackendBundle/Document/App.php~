@@ -1,0 +1,34 @@
+<?php
+
+namespace adsPanel\BackendBundle\Document;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ * 
+ */
+class App_Android {
+    /**
+     * @MongoDB\Id
+     * 
+     */
+    protected $id;
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     */
+    protected $name_app;
+     /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     */
+    protected $package_name;
+     /**
+     * @MongoDB\Float
+     * @Assert\NotBlank()
+     */
+    protected $version__app;
+}
+
+?>
