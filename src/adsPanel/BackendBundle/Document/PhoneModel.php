@@ -18,7 +18,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * @MongoDB\Document
  * 
  */
-class Phone_Model {
+class PhoneModel {
     /**
      * @MongoDB\Id
      * 
@@ -28,30 +28,11 @@ class Phone_Model {
      * @MongoDB\String
      * @Assert\NotBlank()
      */
-    protected $name_model;
+    protected $phoneModel;
     /**
      * @MongoDB\ReferenceOne(targetDocument="Fabricant")
      */
     protected $fabricant;
-}
-
-
-/**
- * @MongoDB\Document
- * 
- */
-class Fabricant {
-    /**
-     * @MongoDB\Id
-     * 
-     */
-    protected $id;
-    /**
-     * @MongoDB\String
-     * @Assert\NotBlank()
-     */
-    protected $name;
-
 
     /**
      * Get id
@@ -69,9 +50,9 @@ class Fabricant {
      * @param string $nameModel
      * @return \Phone_Model
      */
-    public function setNameModel($nameModel)
+    public function setPhoneModel($nameModel)
     {
-        $this->name_model = $nameModel;
+        $this->phoneModel = $nameModel;
         return $this;
     }
 
@@ -80,9 +61,9 @@ class Fabricant {
      *
      * @return string $nameModel
      */
-    public function getNameModel()
+    public function getPhoneModel()
     {
-        return $this->name_model;
+        return $this->phoneModel;
     }
 
     /**

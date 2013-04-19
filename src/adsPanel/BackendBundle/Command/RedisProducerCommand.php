@@ -39,7 +39,6 @@ class RedisProducerCommand extends ContainerAwareCommand {
          $mongoService->insertRequestByJSON($json);
          
         //$output->writeln($json['model_phone']);
-        //TODO dividir en Document
         //}
     }
 

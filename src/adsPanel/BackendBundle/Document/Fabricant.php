@@ -2,13 +2,28 @@
 
 namespace adsPanel\BackendBundle\Document;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
 
 
 /**
- * adsPanel\BackendBundle\Document\Fabricant
+ * @MongoDB\Document
+ * 
  */
 class Fabricant
 {
+   /**
+     * @MongoDB\Id
+     * 
+     */
+    protected $id;
+    /**
+     * @MongoDB\String
+     * @Assert\NotBlank()
+     */
+    protected $name;
+
 
     /**
      * Get id

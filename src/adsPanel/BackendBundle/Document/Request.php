@@ -19,15 +19,15 @@ class Request {
      */
     protected $imei ;
     /**
-     * @MongoDB\ReferenceOne(targetDocument="Phone_Model")
+     * @MongoDB\ReferenceOne(targetDocument="PhoneModel")
      */
-    protected $foreign_phone_model;
+    protected $foreignPhoneModel;
     /**
-     * @MongoDB\ReferenceOne(targetDocument="Network_Operator")
+     * @MongoDB\ReferenceOne(targetDocument="NetworkOperator")
      */
-    protected $foreign_network_operator ;
+    protected $foreignNetworkOperator ;
 
-   // protected $foreign_campaign ;
+   // protected $foreignCampaign ;
     /**
      * @Assert\NotBlank()
      * @MongoDB\Float
@@ -37,11 +37,11 @@ class Request {
      * @Assert\NotBlank()
      * @MongoDB\Float
      */
-    protected $lactitude;
+    protected $latitude;
     /**
      * @MongoDB\Int
      */
-    protected $sdk_version ;
+    protected $sdkVersion ;
     /**
      * @MongoDB\Boolean
      */
@@ -49,7 +49,7 @@ class Request {
     /**
      * @MongoDB\String
      */
-    protected $android_id;
+    protected $androidId;
     /**
      * @MongoDB\Boolean
      */
@@ -59,39 +59,33 @@ class Request {
      */
     protected $email ;
     /**
-     * @Assert\NotBlank()
      * @MongoDB\String
      */
-    protected $phone_number;
+    protected $phoneNumber;
     /**
      * @MongoDB\ReferenceOne(targetDocument="Language")
      */
-    protected $foreign_language;
+    protected $foreignLanguage;
     /**
      * @MongoDB\ReferenceOne(targetDocument="Country")
      */
-    protected $foreign_country;
+    protected $foreignCountry;
     /**
      * @MongoDB\String
      */
-    protected $screen_size;
-    /**
-     * @MongoDB\String
-     */
-    protected $NNNxNNN;
+    protected $screenSize;
     /**
      * @MongoDB\Boolean
      */
-    protected $is_tablet;
+    protected $isTablet;
     /**
      * @MongoDB\String
      */
-    protected $network_subtype;
+    protected $networkSubtype;
     /**
-     * @MongoDB\ReferenceOne(targetDocument="App_Android")
+     * @MongoDB\ReferenceOne(targetDocument="AppAndroid")
      */
-    protected $foreign_app;
-
+    protected $foreignApp;
 
 
     /**
@@ -127,47 +121,47 @@ class Request {
     }
 
     /**
-     * Set foreign_phone_model
+     * Set foreignPhoneModel
      *
-     * @param adsPanel\BackendBundle\Document\Phone_Model $foreignPhoneModel
+     * @param adsPanel\BackendBundle\Document\PhoneModel $foreignPhoneModel
      * @return \Request
      */
-    public function setForeignPhoneModel(\adsPanel\BackendBundle\Document\Phone_Model $foreignPhoneModel)
+    public function setForeignPhoneModel(\adsPanel\BackendBundle\Document\PhoneModel $foreignPhoneModel)
     {
-        $this->foreign_phone_model = $foreignPhoneModel;
+        $this->foreignPhoneModel = $foreignPhoneModel;
         return $this;
     }
 
     /**
-     * Get foreign_phone_model
+     * Get foreignPhoneModel
      *
-     * @return adsPanel\BackendBundle\Document\Phone_Model $foreignPhoneModel
+     * @return adsPanel\BackendBundle\Document\PhoneModel $foreignPhoneModel
      */
     public function getForeignPhoneModel()
     {
-        return $this->foreign_phone_model;
+        return $this->foreignPhoneModel;
     }
 
     /**
-     * Set foreign_network_operator
+     * Set foreignNetworkOperator
      *
-     * @param adsPanel\BackendBundle\Document\Network_Operator $foreignNetworkOperator
+     * @param adsPanel\BackendBundle\Document\NetworkOperator $foreignNetworkOperator
      * @return \Request
      */
-    public function setForeignNetworkOperator(\adsPanel\BackendBundle\Document\Network_Operator $foreignNetworkOperator)
+    public function setForeignNetworkOperator(\adsPanel\BackendBundle\Document\NetworkOperator $foreignNetworkOperator)
     {
-        $this->foreign_network_operator = $foreignNetworkOperator;
+        $this->foreignNetworkOperator = $foreignNetworkOperator;
         return $this;
     }
 
     /**
-     * Get foreign_network_operator
+     * Get foreignNetworkOperator
      *
-     * @return adsPanel\BackendBundle\Document\Network_Operator $foreignNetworkOperator
+     * @return adsPanel\BackendBundle\Document\NetworkOperator $foreignNetworkOperator
      */
     public function getForeignNetworkOperator()
     {
-        return $this->foreign_network_operator;
+        return $this->foreignNetworkOperator;
     }
 
     /**
@@ -193,47 +187,47 @@ class Request {
     }
 
     /**
-     * Set lactitude
+     * Set latitude
      *
-     * @param float $lactitude
+     * @param float $latitude
      * @return \Request
      */
-    public function setLactitude($lactitude)
+    public function setLatitude($latitude)
     {
-        $this->lactitude = $lactitude;
+        $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * Get lactitude
+     * Get latitude
      *
-     * @return float $lactitude
+     * @return float $latitude
      */
-    public function getLactitude()
+    public function getLatitude()
     {
-        return $this->lactitude;
+        return $this->latitude;
     }
 
     /**
-     * Set sdk_version
+     * Set sdkVersion
      *
      * @param int $sdkVersion
      * @return \Request
      */
     public function setSdkVersion($sdkVersion)
     {
-        $this->sdk_version = $sdkVersion;
+        $this->sdkVersion = $sdkVersion;
         return $this;
     }
 
     /**
-     * Get sdk_version
+     * Get sdkVersion
      *
      * @return int $sdkVersion
      */
     public function getSdkVersion()
     {
-        return $this->sdk_version;
+        return $this->sdkVersion;
     }
 
     /**
@@ -259,25 +253,25 @@ class Request {
     }
 
     /**
-     * Set android_id
+     * Set androidId
      *
      * @param string $androidId
      * @return \Request
      */
     public function setAndroidId($androidId)
     {
-        $this->android_id = $androidId;
+        $this->androidId = $androidId;
         return $this;
     }
 
     /**
-     * Get android_id
+     * Get androidId
      *
      * @return string $androidId
      */
     public function getAndroidId()
     {
-        return $this->android_id;
+        return $this->androidId;
     }
 
     /**
@@ -325,178 +319,156 @@ class Request {
     }
 
     /**
-     * Set phone_number
+     * Set phoneNumber
      *
      * @param string $phoneNumber
      * @return \Request
      */
     public function setPhoneNumber($phoneNumber)
     {
-        $this->phone_number = $phoneNumber;
+        $this->phoneNumber = $phoneNumber;
         return $this;
     }
 
     /**
-     * Get phone_number
+     * Get phoneNumber
      *
      * @return string $phoneNumber
      */
     public function getPhoneNumber()
     {
-        return $this->phone_number;
+        return $this->phoneNumber;
     }
 
     /**
-     * Set foreign_language
+     * Set foreignLanguage
      *
      * @param adsPanel\BackendBundle\Document\Language $foreignLanguage
      * @return \Request
      */
     public function setForeignLanguage(\adsPanel\BackendBundle\Document\Language $foreignLanguage)
     {
-        $this->foreign_language = $foreignLanguage;
+        $this->foreignLanguage = $foreignLanguage;
         return $this;
     }
 
     /**
-     * Get foreign_language
+     * Get foreignLanguage
      *
      * @return adsPanel\BackendBundle\Document\Language $foreignLanguage
      */
     public function getForeignLanguage()
     {
-        return $this->foreign_language;
+        return $this->foreignLanguage;
     }
 
     /**
-     * Set foreign_country
+     * Set foreignCountry
      *
      * @param adsPanel\BackendBundle\Document\Country $foreignCountry
      * @return \Request
      */
     public function setForeignCountry(\adsPanel\BackendBundle\Document\Country $foreignCountry)
     {
-        $this->foreign_country = $foreignCountry;
+        $this->foreignCountry = $foreignCountry;
         return $this;
     }
 
     /**
-     * Get foreign_country
+     * Get foreignCountry
      *
      * @return adsPanel\BackendBundle\Document\Country $foreignCountry
      */
     public function getForeignCountry()
     {
-        return $this->foreign_country;
+        return $this->foreignCountry;
     }
 
     /**
-     * Set screen_size
+     * Set screenSize
      *
      * @param string $screenSize
      * @return \Request
      */
     public function setScreenSize($screenSize)
     {
-        $this->screen_size = $screenSize;
+        $this->screenSize = $screenSize;
         return $this;
     }
 
     /**
-     * Get screen_size
+     * Get screenSize
      *
      * @return string $screenSize
      */
     public function getScreenSize()
     {
-        return $this->screen_size;
+        return $this->screenSize;
     }
 
     /**
-     * Set NNNxNNN
-     *
-     * @param string $nNNxNNN
-     * @return \Request
-     */
-    public function setNNNxNNN($nNNxNNN)
-    {
-        $this->NNNxNNN = $nNNxNNN;
-        return $this;
-    }
-
-    /**
-     * Get NNNxNNN
-     *
-     * @return string $nNNxNNN
-     */
-    public function getNNNxNNN()
-    {
-        return $this->NNNxNNN;
-    }
-
-    /**
-     * Set is_tablet
+     * Set isTablet
      *
      * @param boolean $isTablet
      * @return \Request
      */
     public function setIsTablet($isTablet)
     {
-        $this->is_tablet = $isTablet;
+        $this->isTablet = $isTablet;
         return $this;
     }
 
     /**
-     * Get is_tablet
+     * Get isTablet
      *
      * @return boolean $isTablet
      */
     public function getIsTablet()
     {
-        return $this->is_tablet;
+        return $this->isTablet;
     }
 
     /**
-     * Set network_subtype
+     * Set networkSubtype
      *
      * @param string $networkSubtype
      * @return \Request
      */
     public function setNetworkSubtype($networkSubtype)
     {
-        $this->network_subtype = $networkSubtype;
+        $this->networkSubtype = $networkSubtype;
         return $this;
     }
 
     /**
-     * Get network_subtype
+     * Get networkSubtype
      *
      * @return string $networkSubtype
      */
     public function getNetworkSubtype()
     {
-        return $this->network_subtype;
+        return $this->networkSubtype;
     }
 
     /**
-     * Set foreign_app
+     * Set foreignApp
      *
-     * @param adsPanel\BackendBundle\Document\App_Android $foreignApp
+     * @param adsPanel\BackendBundle\Document\AppAndroid $foreignApp
      * @return \Request
      */
-    public function setForeignApp(\adsPanel\BackendBundle\Document\App_Android $foreignApp)
+    public function setForeignApp(\adsPanel\BackendBundle\Document\AppAndroid $foreignApp)
     {
-        $this->foreign_app = $foreignApp;
+        $this->foreignApp = $foreignApp;
         return $this;
     }
 
     /**
-     * Get foreign_app
+     * Get foreignApp
      *
-     * @return adsPanel\BackendBundle\Document\App_Android $foreignApp
+     * @return adsPanel\BackendBundle\Document\AppAndroid $foreignApp
      */
     public function getForeignApp()
     {
-        return $this->foreign_app;
+        return $this->foreignApp;
     }
 }

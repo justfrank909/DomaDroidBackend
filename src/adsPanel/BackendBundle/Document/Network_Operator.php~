@@ -10,7 +10,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * @MongoDB\Document
  * 
  */
-class App {
+class Network_Operator {
     /**
      * @MongoDB\Id
      * 

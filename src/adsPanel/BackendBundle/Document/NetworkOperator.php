@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace adsPanel\BackendBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
@@ -8,7 +10,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * @MongoDB\Document
  * 
  */
-class Language {
+class NetworkOperator {
     /**
      * @MongoDB\Id
      * 
@@ -18,7 +20,7 @@ class Language {
      * @MongoDB\String
      * @Assert\NotBlank()
      */
-    protected $language;
+    protected $name;
 
 
     /**
@@ -32,24 +34,24 @@ class Language {
     }
 
     /**
-     * Set language
+     * Set name
      *
-     * @param string $language
-     * @return \Language
+     * @param string $name
+     * @return \Network_Operator
      */
-    public function setLanguage($language)
+    public function setName($name)
     {
-        $this->language = $language;
+        $this->name = $name;
         return $this;
     }
 
     /**
-     * Get language
+     * Get name
      *
-     * @return string $language
+     * @return string $name
      */
-    public function getLanguage()
+    public function getName()
     {
-        return $this->language;
+        return $this->name;
     }
 }
