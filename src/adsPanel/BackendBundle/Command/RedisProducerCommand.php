@@ -36,33 +36,7 @@ class RedisProducerCommand extends ContainerAwareCommand {
         
         //for ($i = 0; $i < 500; $i++) {
          $json = json_decode($redisService->desacolar(),true);
-         $json['sdk_version'];
-         $json['model_phone'];
-         $json['fabricant_phone'];
-         $json['network_operator'];
-         $json['imei'];
-         $json['phone_number'];
-         $json['language'];
-         $json['country'];
-         $json['wifi'];
-         $json['android_id'];
-         $json['sd'];
-         $json['screen_size'];
-         $json['isTablet'];
-         $json['network_subtype'];
-         $json['name_app'];
-         $json['package_name'];
-         $json['version_app'];
-         
-         if(isset($json['latitude'])){
-             
-         }
-         if(isset($json['longitude'])){
-             
-         }
-         if(isset($json['email'])){
-             
-         }
+         $mongoService->insertRequestByJSON($json);
          
         //$output->writeln($json['model_phone']);
         //TODO dividir en Document
