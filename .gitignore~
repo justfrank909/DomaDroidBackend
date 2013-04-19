@@ -9,6 +9,11 @@ web/uploads/*
 web/bundles/*
 
 # Configuration files
+<<<<<<< HEAD
+app/config/parameters.ini
+app/config/parameters.yml
+=======
 /app/config/parameters.ini
 /app/config/parameters.yml
+>>>>>>> e4ce468308f428f17d7ebe0abaca846dbb8cbc54
 /nbproject/private/

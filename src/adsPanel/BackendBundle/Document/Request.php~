@@ -1,0 +1,99 @@
+<?php
+
+namespace adsPanel\BackendBundle\Document;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+
+/**
+ * @MongoDB\Document
+ * 
+ */
+class Request {
+    /**
+     * @MongoDB\Id
+     * 
+     */
+    protected $id;
+    /**
+     * @MongoDB\String
+     */
+    protected $imei ;
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="Phone_Model")
+     */
+    protected $foreign_phone_model;
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="Network_Operator")
+     */
+    protected $foreign_network_operator ;
+
+   // protected $foreign_campaign ;
+    /**
+     * @Assert\NotBlank()
+     * @MongoDB\Float
+     */
+    protected $longitude ;
+    /**
+     * @Assert\NotBlank()
+     * @MongoDB\Float
+     */
+    protected $lactitude;
+    /**
+     * @MongoDB\Int
+     */
+    protected $sdk_version ;
+    /**
+     * @MongoDB\Boolean
+     */
+    protected $wifi;
+    /**
+     * @MongoDB\String
+     */
+    protected $android_id;
+    /**
+     * @MongoDB\Boolean
+     */
+    protected $sd;
+    /**
+     * @MongoDB\String
+     */
+    protected $email ;
+    /**
+     * @Assert\NotBlank()
+     * @MongoDB\String
+     */
+    protected $phone_number;
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="Language")
+     */
+    protected $foreign_language;
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="Country")
+     */
+    protected $foreign_country;
+    /**
+     * @MongoDB\String
+     */
+    protected $screen_size;
+    /**
+     * @MongoDB\String
+     */
+    protected $NNNxNNN;
+    /**
+     * @MongoDB\Boolean
+     */
+    protected $is_tablet;
+    /**
+     * @MongoDB\String
+     */
+    protected $network_subtype;
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="App_Android")
+     */
+    protected $foreign_app;
+
+
+}
+
+
+?>
